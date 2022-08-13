@@ -1,5 +1,5 @@
 # sbatchpy
-Sbatchpy is a python package allowing easy ``sbatch`` job script creation and submissions on ``hpc clusters``, directly from ``python``. 
+``sbatchpy`` is a python package allowing easy ``sbatch`` job script creation and submissions on ``hpc clusters``, directly from ``python``. 
 
 # Installation
 
