@@ -37,7 +37,7 @@ for var1, var2 in zip([1, 2, 3], ["A", "B", "C"]):
     )
 
 ```
-By default, sbatchpy will check that ``config["output"]`` exists. If it doesn't, you will be notified and the job will not run. 
+By default, sbatchpy will check that ``config["output"]``'s directory folder exists. If it doesn't, you will be notified and the job will not run. 
 
 Additionally, each sbatch submission script is saved inside the ``f"{os.getcwd()}/.job"`` folder. Another saving folder can be chosen by passing ``job_directory=my_saving_directory_path`` to the ``run`` function which is responsible of creating the submission script and running it using ``sbatch job_directory/config["job-name"]``.
 
