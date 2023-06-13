@@ -1,16 +1,6 @@
 import os
 
 
-def mkdir_p(dir):
-    """make a directory if it doesn't exist
-
-    Args:
-        dir (str): directory path
-    """
-    if not os.path.exists(dir):
-        os.mkdir(dir)
-
-
 def write_line(fh, key, value):
     """Write sbatch line
 
@@ -69,7 +59,7 @@ def write_sbatch(options, code, load_preset="", job_directory=f"{os.getcwd()}/.j
         except:
             print("preset not implemented!")
 
-    mkdir_p(job_directory)
+    os.makedirs(job_directory, exist_ok=True)
     job_file = os.path.join(job_directory, options["job-name"])
     with open(job_file, "w") as fh:
         fh.writelines("#!/bin/bash\n")
@@ -91,7 +81,14 @@ def run_sbatch(job_file):
     os.system(f"sbatch {job_file}")
 
 
-def run(options, code, load_preset="", job_directory=f"{os.getcwd()}/.job",check_dirname=True):
+def run(
+    options,
+    code,
+    load_preset="",
+    job_directory=f"{os.getcwd()}/.job",
+    check_dirname=True,
+    cleanup=False,
+):
     """Write and run sbatch file.
 
     Args:
@@ -99,6 +96,7 @@ def run(options, code, load_preset="", job_directory=f"{os.getcwd()}/.job",check
         code (str): code to be run in the slurm job.
         load_preset (str, optional): name of the preset to be loaded. Defaults to "".
         job_directory (str, optional): Folder path to where sbatch jobs will be written. Defaults to f"{os.getcwd()}/.job".
+        cleanup: if True delete .job folder
     """
     # check that output directory exist otherwise stop
     if "output" in options:
@@ -108,6 +106,9 @@ def run(options, code, load_preset="", job_directory=f"{os.getcwd()}/.job",check
             if not os.path.isdir(dirname) and dirname != "":
                 print(f"This jobs was not submitted as {dirname} does not exist.")
                 return
-            
+
     job_file = write_sbatch(options, code, load_preset=load_preset, job_directory=job_directory)
     run_sbatch(job_file)
+
+    if cleanup:
+        os.rmdir(job_directory)
