@@ -8,7 +8,7 @@
 pip install sbatchpy
 
 # to install latest GitHub commit
-pip install git+https://github.com/killiansheriff/sbatchpy
+pip install --upgrade git+https://github.com/killiansheriff/sbatchpy
 ```
 
 # Usage
