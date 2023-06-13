@@ -1,23 +1,24 @@
-import requests
+
 from setuptools import find_packages, setup
 
 
-def get_latest_version():
-    api_url = "https://api.github.com/repos/killiansheriff/sbatchpy/releases/latest"
-    response = requests.get(api_url)
-    if response.status_code == 200:
-        release_info = response.json()
-        tag_name = release_info["tag_name"]
-        # Extract the version number from the tag name
-        version = re.match(r"v?(\d+\.\d+\.\d+)", tag_name)
-        if version:
-            return version.group(1)
-    return "0.0.1"  # Default version if fetching fails
+version = (
+    subprocess.run(["git", "describe", "--tags"], stdout=subprocess.PIPE)
+    .stdout.decode("utf-8")
+    .strip()
+)
 
+if "-" in version:
+    # when not on tag, git describe outputs: "1.3.3-22-gdf81228"
+    # pip has gotten strict with version numbers
+    # so change it to: "1.3.3+22.git.gdf81228"
+    # See: https://peps.python.org/pep-0440/#local-version-segments
+    v,i,s = version.split("-")
+    version = v + "+" + i + ".git." + s
 
 setup(
     name="sbatchpy",
-    version=get_latest_version(),
+    version=version,
     packages=find_packages(exclude=["tests.*", "tests", "figs", "examples"]),
     author="Killian Sheriff",
     author_email="ksheriff@mit.edu",
