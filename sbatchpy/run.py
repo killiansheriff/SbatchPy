@@ -91,7 +91,7 @@ def run_sbatch(job_file):
     os.system(f"sbatch {job_file}")
 
 
-def run(options, code, load_preset="", job_directory=f"{os.getcwd()}/.job"):
+def run(options, code, load_preset="", job_directory=f"{os.getcwd()}/.job",check_dirname=True):
     """Write and run sbatch file.
 
     Args:
@@ -104,9 +104,10 @@ def run(options, code, load_preset="", job_directory=f"{os.getcwd()}/.job"):
     if "output" in options:
         dirname = os.path.dirname(options["output"])
 
-        if not os.path.isdir(dirname) and dirname != "":
-            print(f"This jobs was not submitted as {dirname} does not exist.")
-            return
+        if check_dirname:
+            if not os.path.isdir(dirname) and dirname != "":
+                print(f"This jobs was not submitted as {dirname} does not exist.")
+                return
             
     job_file = write_sbatch(options, code, load_preset=load_preset, job_directory=job_directory)
     run_sbatch(job_file)
