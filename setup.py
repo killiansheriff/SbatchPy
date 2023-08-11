@@ -1,7 +1,7 @@
 from setuptools import find_packages, setup
 setup(
     name="sbatchpy",
-    version=0.0.2,
+    version=0.0.3,
     packages=find_packages(exclude=["tests.*", "tests", "figs", "examples"]),
     author="Killian Sheriff",
     author_email="ksheriff@mit.edu",
