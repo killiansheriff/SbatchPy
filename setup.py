@@ -1,7 +1,17 @@
+import os
+
 from setuptools import find_packages, setup
+
+# Get description from README
+root = os.path.abspath(os.path.dirname(__file__))
+with open(os.path.join(root, "README.md"), "r", encoding="utf-8") as f:
+    long_description = f.read()
+
+
 setup(
     name="sbatchpy",
     version="0.0.3",
+    long_description=long_description,
     packages=find_packages(exclude=["tests.*", "tests", "figs", "examples"]),
     author="Killian Sheriff",
     author_email="ksheriff@mit.edu",
