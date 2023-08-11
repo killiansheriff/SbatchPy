@@ -1,7 +1,7 @@
 # sbatchpy
 ![PyPI Version](https://img.shields.io/pypi/v/sbatchpy.svg) ![PyPI Downloads](https://static.pepy.tech/badge/sbatchpy) 
 
-``sbatchpy`` is a python package allowing easy ``sbatch`` job script creation and submissions on ``hpc clusters``, directly from ``python``. 
+A python package that allows easy ``sbatch`` job script creation and submissions on ``hpc clusters``, directly from ``python``. 
 
 # Installation
 
