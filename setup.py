@@ -10,7 +10,7 @@ with open(os.path.join(root, "README.md"), "r", encoding="utf-8") as f:
 
 setup(
     name="sbatchpy",
-    version="0.0.5",
+    version="1.0.0",
     long_description=long_description,
     long_description_content_type="text/markdown",
     packages=find_packages(exclude=["tests.*", "tests", "figs", "examples"]),

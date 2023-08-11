@@ -17,7 +17,7 @@ pip install --upgrade git+https://github.com/killiansheriff/sbatchpy
 An example on how to run a python script called ``my_script.py`` taking 2 arguments ``var1`` and ``var2`` as inputs, and using the ``base`` environement is provided below. A complete example with outputs can be found [here](examples/).
 
 ```python
-from sbatchpy.run import run
+from sbatchpy import run
 
 config = {
     "mem": "1gb",
