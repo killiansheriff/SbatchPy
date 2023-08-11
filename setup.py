@@ -12,6 +12,7 @@ setup(
     name="sbatchpy",
     version="0.0.4",
     long_description=long_description,
+    long_description_content_type="text/markdown",
     packages=find_packages(exclude=["tests.*", "tests", "figs", "examples"]),
     author="Killian Sheriff",
     author_email="ksheriff@mit.edu",
